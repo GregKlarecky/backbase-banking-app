@@ -1,0 +1,15 @@
+.pe-container {
+  background-image: url("/assets/background.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  &:after {
+    content: "";
+    backdrop-filter: blur(3px);
+    display: block;
+    height: 100vh;
+    width: 100vw;
+  }
+}
