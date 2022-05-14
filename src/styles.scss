@@ -3,3 +3,11 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 @import "https://cdn.lineicons.com/3.0/lineicons.css";
+@import "~src/app/modules/bb-ui/styles/vars";
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

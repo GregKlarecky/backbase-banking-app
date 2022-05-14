@@ -1,18 +1,31 @@
+@import "~src/app/modules/bb-ui/styles/vars";
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .pe-container {
   background-image: url("/assets/background.jpg");
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  flex: 1;
   position: relative;
   &:before {
     content: "";
     backdrop-filter: blur(3px);
     display: block;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
   }
+}
+
+.stamp {
+  color: $primary-blue;
+  font-weight: 600;
 }
