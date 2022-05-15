@@ -1,0 +1,17 @@
+@import "~src/styles/colors";
+
+.submit-button {
+  button {
+    background-color: $primary-orange;
+    border-color: $primary-orange;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $active-orange !important;
+      border-color: $active-orange !important;
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.2rem $light-orange !important;
+    }
+  }
+}

@@ -1,11 +1,13 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <div *ngFor="let question of questions" class="form-row">
-      <app-input [question]="question" [form]="form"></app-input>
-    </div>
+    <app-input
+      *ngFor="let question of questions"
+      [question]="question"
+      [form]="form"
+    ></app-input>
 
-    <div class="form-row">
-      <app-submit-button></app-submit-button>
+    <div class="form-footer d-flex">
+      <app-submit-button class="submit-button ml-auto"></app-submit-button>
     </div>
   </form>
 </div>
