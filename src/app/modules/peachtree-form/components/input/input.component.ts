@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { InputOptions } from 'src/app/interfaces/input-options.interface';
+import { QuestionBase } from '../../helpers/question-base.helper';
 
 @Component({
   selector: 'app-input',
@@ -7,7 +7,7 @@ import { InputOptions } from 'src/app/interfaces/input-options.interface';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-  @Input() options: InputOptions;
+  @Input() question: QuestionBase<any>;
   constructor() {}
 
   ngOnInit(): void {}
