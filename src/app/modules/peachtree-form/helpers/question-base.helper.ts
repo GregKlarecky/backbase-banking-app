@@ -1,13 +1,14 @@
 import { ControlType } from 'src/app/enums/control-type.enum';
 import { InputType } from 'src/app/enums/input-type.enum';
 import { KeyValuePair } from 'src/app/interfaces/key-value-pair.interface';
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 
 export class QuestionBase<T> {
   value: T | undefined;
   key: string;
   label: string;
   validators: ValidatorFn[];
+  asyncValidators: AsyncValidatorFn[];
   controlType: ControlType;
   type: InputType;
   options: KeyValuePair;
@@ -19,6 +20,7 @@ export class QuestionBase<T> {
     type: InputType;
     value?: T;
     validators?: ValidatorFn[];
+    asyncValidators?: AsyncValidatorFn[];
     options?: KeyValuePair;
   }) {
     this.controlType = options.controlType;
@@ -27,6 +29,7 @@ export class QuestionBase<T> {
     this.type = options.type;
     this.value = options.value;
     this.validators = options.validators || [];
+    this.asyncValidators = options.asyncValidators || [];
     this.options = options.options || <KeyValuePair>{};
   }
 }

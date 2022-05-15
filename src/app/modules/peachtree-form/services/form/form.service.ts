@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { QuestionBase } from '../../helpers/question-base.helper';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { QuestionBase } from '../../helpers/question-base.helper';
 export class FormService {
   constructor() {}
 
-  toFormGroup(questions: QuestionBase<string>[]) {
+  toFormGroup(questions: QuestionBase<string>[]): FormGroup {
     const group: any = {};
 
     questions.forEach(question => {
@@ -17,7 +17,8 @@ export class FormService {
           value: question.value || '',
           disabled: question.options.disabled
         },
-        question.validators
+        question.validators,
+        question.asyncValidators
       );
     });
     return new FormGroup(group);
