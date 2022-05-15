@@ -1,6 +1,9 @@
 import { QuestionBase } from '../../peachtree-form/helpers/question-base.helper';
 import { ControlType } from 'src/app/enums/control-type.enum';
 import { InputType } from 'src/app/enums/input-type.enum';
+import { Validators } from '@angular/forms';
+import { NegativeNumber } from '../../peachtree-form/validators/negative-number.validator';
+import { NumberValidator } from '../../peachtree-form/validators/number.validator';
 
 export const transferFormQuestions = [
   new QuestionBase({
@@ -14,12 +17,14 @@ export const transferFormQuestions = [
     controlType: ControlType.Text,
     key: 'toAccount',
     label: 'To Account',
-    type: InputType.Text
+    type: InputType.Text,
+    validators: [Validators.required]
   }),
   new QuestionBase({
     controlType: ControlType.Currency,
     key: 'ammount',
     label: 'Ammount',
-    type: InputType.Text
+    type: InputType.Text,
+    validators: [Validators.required, NumberValidator, NegativeNumber]
   })
 ];

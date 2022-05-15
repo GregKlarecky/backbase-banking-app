@@ -26,8 +26,15 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.validate();
     if (this.form.valid) {
       this.submit.emit(this.form.value);
     }
+  }
+
+  validate() {
+    this.questions.forEach(question => {
+      this.form.controls[question.key].markAsTouched();
+    });
   }
 }

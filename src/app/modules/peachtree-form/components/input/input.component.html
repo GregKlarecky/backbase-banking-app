@@ -1,12 +1,12 @@
-<div class="form-group" *ngIf="question">
+<div class="form-group" *ngIf="question" [formGroup]="form">
   <label for="question.key" class="label">{{ question.label }}</label>
   <ng-container [ngSwitch]="question.controlType">
     <input
+      [formControlName]="question.key"
       *ngSwitchCase="controlType.Text"
       type="question.type"
       class="form-control"
       id="question.key"
-      [disabled]="question.options?.disabled"
     />
     <div *ngSwitchCase="controlType.Currency" class="input-group">
       <div class="input-group-prepend">
@@ -14,11 +14,17 @@
       </div>
       <input
         type="question.type"
+        [formControlName]="question.key"
         class="form-control"
         id="question.key"
-        [disabled]="question.options?.disabled"
       />
     </div>
   </ng-container>
-  <small class="form-text text-danger">Input error</small>
+  <ng-container *ngIf="hasError">
+    <small
+      *ngFor="let message of errorMessages"
+      class="form-text text-danger"
+      >{{ message }}</small
+    >
+  </ng-container>
 </div>
