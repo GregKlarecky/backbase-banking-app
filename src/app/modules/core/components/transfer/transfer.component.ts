@@ -3,6 +3,9 @@ import { TransferFormService } from '../../services/transfer-form/transfer-form.
 import { QuestionBase } from 'src/app/modules/peachtree-form/helpers/question-base.helper';
 import { StateService } from '../../services/state/state.service';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewComponent } from '../review/review.component';
+import { TransferFormValue } from 'src/app/interfaces/transfer-form-value.interface';
 
 @Component({
   selector: 'app-transfer',
@@ -13,7 +16,8 @@ export class TransferComponent implements OnInit {
   transferFormQuestions: QuestionBase<any>[];
   constructor(
     private stateService: StateService,
-    private transferForm: TransferFormService
+    private transferForm: TransferFormService,
+    private ngbModal: NgbModal
   ) {}
   ngOnInit(): void {
     this.buildFormOnBalanceChange();
@@ -32,5 +36,10 @@ export class TransferComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  openReview(formValue: TransferFormValue) {
+    const reference = this.ngbModal.open(ReviewComponent);
+    reference.componentInstance.options = formValue;
   }
 }

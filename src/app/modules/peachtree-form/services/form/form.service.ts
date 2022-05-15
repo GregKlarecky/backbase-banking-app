@@ -13,10 +13,7 @@ export class FormService {
 
     questions.forEach(question => {
       group[question.key] = new FormControl(
-        {
-          value: question.value || '',
-          disabled: question.options.disabled
-        },
+        question.value,
         question.validators,
         question.asyncValidators
       );

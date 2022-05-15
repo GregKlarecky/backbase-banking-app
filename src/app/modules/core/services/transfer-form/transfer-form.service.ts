@@ -33,8 +33,8 @@ export class TransferFormService {
       }),
       new QuestionBase({
         controlType: ControlType.Currency,
-        key: 'ammount',
-        label: 'Ammount',
+        key: 'amount',
+        label: 'Amount',
         type: InputType.Text,
         validators: [
           Validators.required,

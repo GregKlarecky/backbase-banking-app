@@ -20,17 +20,14 @@ export class BalanceValidator implements AsyncValidator {
       take(1),
       map(balance =>
         this.isAmountOverAllowedBalance(balance, control.value)
-          ? { ammountOverAllowedBalance: 'There is not enough balance.' }
+          ? { amountOverAllowedBalance: 'There is not enough balance.' }
           : null
       ),
       catchError(() => of(null))
     );
   }
 
-  private isAmountOverAllowedBalance(
-    balance: number,
-    ammount: number
-  ): boolean {
-    return balance + this.maxAmountAllowedOverBalance < +ammount;
+  private isAmountOverAllowedBalance(balance: number, amount: number): boolean {
+    return balance + this.maxAmountAllowedOverBalance < +amount;
   }
 }

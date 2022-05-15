@@ -7,6 +7,7 @@
       type="question.type"
       class="form-control"
       id="question.key"
+      [readonly]="question.options.disabled"
     />
     <div *ngSwitchCase="controlType.Currency" class="input-group">
       <div class="input-group-prepend">
@@ -14,6 +15,7 @@
       </div>
       <input
         type="question.type"
+        [readonly]="question.options.disabled"
         [formControlName]="question.key"
         class="form-control"
         id="question.key"

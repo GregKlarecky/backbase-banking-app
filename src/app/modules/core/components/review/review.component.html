@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">Review <span class="weak">Transfer</span></h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body d-flex flex-column">
+  <i class="mb-3">Are you ready to send out this transfer?</i>
+  <strong class="mb-2">It will be sent to account:</strong>
+  <p class="mb-3">{{ options.toAccount }}</p>
+  <strong class="mb-2">With the amount of:</strong>
+  <p>{{ options.amount | currency: "EUR" }}</p>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+  <app-submit-button
+    class="submit-button"
+    (submitForm)="makeTransfer()"
+  ></app-submit-button>
+</div>
