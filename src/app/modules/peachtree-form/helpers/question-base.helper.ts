@@ -1,20 +1,24 @@
+import { ControlType } from 'src/app/enums/control-type.enum';
+import { InputType } from 'src/app/enums/input-type.enum';
+import { KeyValuePair } from 'src/app/interfaces/key-value-pair.interface';
+
 export class QuestionBase<T> {
   value: T | undefined;
   key: string;
   label: string;
   required: boolean;
-  controlType: string;
-  type: string;
-  options: { key: string; value: string }[];
+  controlType: ControlType;
+  type: InputType;
+  options: KeyValuePair;
 
   constructor(options: {
-    controlType: 'text' | 'currency';
+    controlType: ControlType;
     key: string;
     label: string;
-    type: string;
+    type: InputType;
     value?: T;
     required?: boolean;
-    options?: { key: string; value: string }[];
+    options?: KeyValuePair;
   }) {
     this.controlType = options.controlType;
     this.key = options.key;
@@ -22,6 +26,6 @@ export class QuestionBase<T> {
     this.type = options.type;
     this.value = options.value;
     this.required = !!options.required;
-    this.options = options.options || [];
+    this.options = options.options || <KeyValuePair>{};
   }
 }
