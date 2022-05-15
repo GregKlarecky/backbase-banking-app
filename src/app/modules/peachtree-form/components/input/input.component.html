@@ -1,0 +1,10 @@
+<div class="form-group" *ngIf="options">
+  <label for="options.name" class="label">{{ options.label }}</label>
+  <input
+    type="options.type"
+    class="form-control"
+    id="options.name"
+    [disabled]="options.disabled"
+  />
+  <small class="form-text text-danger">Input error</small>
+</div>
