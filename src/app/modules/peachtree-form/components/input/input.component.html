@@ -1,10 +1,24 @@
 <div class="form-group" *ngIf="question">
   <label for="question.key" class="label">{{ question.label }}</label>
-  <input
-    type="question.type"
-    class="form-control"
-    id="question.key"
-    [disabled]="question.options?.disabled"
-  />
+  <ng-container [ngSwitch]="question.controlType">
+    <input
+      *ngSwitchCase="controlType.Text"
+      type="question.type"
+      class="form-control"
+      id="question.key"
+      [disabled]="question.options?.disabled"
+    />
+    <div *ngSwitchCase="controlType.Currency" class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">&euro;</span>
+      </div>
+      <input
+        type="question.type"
+        class="form-control"
+        id="question.key"
+        [disabled]="question.options?.disabled"
+      />
+    </div>
+  </ng-container>
   <small class="form-text text-danger">Input error</small>
 </div>

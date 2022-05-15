@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionBase } from '../../helpers/question-base.helper';
+import { ControlType } from 'src/app/enums/control-type.enum';
 
 @Component({
   selector: 'app-input',
@@ -8,6 +9,7 @@ import { QuestionBase } from '../../helpers/question-base.helper';
 })
 export class InputComponent implements OnInit {
   @Input() question: QuestionBase<any>;
+  controlType: typeof ControlType = ControlType;
   constructor() {}
 
   ngOnInit(): void {}

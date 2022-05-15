@@ -15,5 +15,11 @@ export const transferFormQuestions = [
     key: 'toAccount',
     label: 'To Account',
     type: InputType.Text
+  }),
+  new QuestionBase({
+    controlType: ControlType.Currency,
+    key: 'ammount',
+    label: 'Ammount',
+    type: InputType.Text
   })
 ];
