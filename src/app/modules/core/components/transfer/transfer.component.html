@@ -4,6 +4,9 @@
     ><span>transfer</span>
   </div>
   <div class="card-body">
-    <app-form [questions]="transferFormQuestions"></app-form>
+    <app-form
+      *ngIf="transferFormQuestions"
+      [questions]="transferFormQuestions"
+    ></app-form>
   </div>
 </div>

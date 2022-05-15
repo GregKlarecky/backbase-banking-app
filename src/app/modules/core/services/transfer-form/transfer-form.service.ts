@@ -14,9 +14,10 @@ import { DecimalNumber } from 'src/app/modules/peachtree-form/validators/decimal
 export class TransferFormService {
   constructor(private balanceValidator: BalanceValidator) {}
 
-  getQuestions(): QuestionBase<any>[] {
+  getQuestions(accountName: string): QuestionBase<any>[] {
     return [
       new QuestionBase({
+        value: accountName,
         controlType: ControlType.Text,
         key: 'fromAccount',
         label: 'From Account',
