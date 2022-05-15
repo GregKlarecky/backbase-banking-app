@@ -1,0 +1,15 @@
+@import "~src/app/modules/bb-ui/styles/vars";
+
+.card-header.peachtree-card-header {
+  background: $primary-blue;
+  border-radius: 12px 12px 0 0;
+  color: white;
+  i {
+    font-size: 20px;
+  }
+}
+
+.card.peachtree-card {
+  border-style: none;
+  border-radius: 12px;
+}
