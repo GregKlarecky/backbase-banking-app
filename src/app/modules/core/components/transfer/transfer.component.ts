@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { transferFormQuestions } from '../../helpers/transfer-form.helper';
 
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
   styleUrls: ['./transfer.component.scss']
 })
-export class TransferComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class TransferComponent {
+  transferFormQuestions = transferFormQuestions;
 }
