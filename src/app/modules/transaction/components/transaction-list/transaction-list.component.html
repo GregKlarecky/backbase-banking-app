@@ -4,7 +4,7 @@
     ><span class="mr-1">Transaction</span><b>List</b>
   </div>
   <div class="card-body">
-    <app-filter></app-filter>
+    <app-filter (inputChange)="onSearch($event)"></app-filter>
     <app-transaction-item
       class="d-flex transaction-item"
       [class.mb-4]="!last"
@@ -24,7 +24,7 @@
         data-test-hook="transactionMerchantName"
         class="h-50 d-flex align-items-end merchant"
       >
-        {{ transaction.merchant.name }}
+        {{ transaction.merchantName }}
       </span>
       <span
         data-test-hook="transactionType"
