@@ -7,8 +7,13 @@ import { CountableNumber } from './pipes/countable-number/countable-number.pipe'
 import { PeachtreeCurrencyPipe } from './pipes/peachtree-currency/peachtree-currency.pipe';
 
 @NgModule({
-  declarations: [TransactionListComponent, AmountComponent, CountableNumber, PeachtreeCurrencyPipe],
+  declarations: [
+    TransactionListComponent,
+    AmountComponent,
+    CountableNumber,
+    PeachtreeCurrencyPipe
+  ],
   imports: [CommonModule, BbUIModule],
-  exports: [TransactionListComponent]
+  exports: [TransactionListComponent, PeachtreeCurrencyPipe]
 })
 export class TransactionModule {}
