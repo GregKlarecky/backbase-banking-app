@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PeachtreeFormModule } from './modules/peachtree-form/peachtree-form.module';
 import { CoreModule } from './modules/core/core.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { TransactionModule } from './modules/transaction/transaction.module';
     CoreModule,
     PeachtreeFormModule,
     TransactionModule,
+    HttpClientModule,
     NgbModule
   ],
   providers: [],

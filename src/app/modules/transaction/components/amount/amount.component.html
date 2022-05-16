@@ -1,0 +1,10 @@
+<div
+  class="h-100 d-flex align-items-center amount"
+  [ngClass]="
+    (transaction | countableNumber) < 0 ? 'text-danger' : 'text-success'
+  "
+>
+  {{
+    transaction | countableNumber | peachtreeCurrency: transaction.currencyCode
+  }}
+</div>
