@@ -19,8 +19,12 @@ export class ReviewComponent {
     this.changeBalance();
     this.activeModal.close();
   }
+
   changeBalance() {
-    const balance = this.stateService.balance$.value - +this.options.amount;
+    const balance =
+      Math.round(
+        this.stateService.balance$.value * 100 - +this.options.amount * 100
+      ) / 100;
     this.stateService.balance$.next(balance);
   }
 }
