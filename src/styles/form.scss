@@ -2,16 +2,16 @@
 
 .submit-button {
   button {
-    background-color: $primary-orange;
-    border-color: $primary-orange;
+    background-color: $orange;
+    border-color: $orange;
     &:hover,
     &:active,
     &:focus {
-      background-color: $active-orange !important;
-      border-color: $active-orange !important;
+      background-color: $brown !important;
+      border-color: $brown !important;
     }
     &:focus {
-      box-shadow: 0 0 0 0.2rem $light-orange !important;
+      box-shadow: 0 0 0 0.2rem $light-pink !important;
     }
   }
 }
