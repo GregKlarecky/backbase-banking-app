@@ -1,12 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { MockComponent } from 'ng-mocks';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './modules/bb-ui/components/footer/footer.component';
+import { LogoComponent } from './modules/bb-ui/components/logo/logo.component';
+import { TransferComponent } from './modules/core/components/transfer/transfer.component';
+import { TransactionListComponent } from './modules/transaction/components/transaction-list/transaction-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
-      ],
+        AppComponent,
+        MockComponent(TransferComponent),
+        MockComponent(TransactionListComponent),
+        MockComponent(FooterComponent),
+        MockComponent(LogoComponent)
+      ]
     }).compileComponents();
   });
 
@@ -14,18 +23,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'backbase-banking-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('backbase-banking-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('backbase-banking-app app is running!');
   });
 });

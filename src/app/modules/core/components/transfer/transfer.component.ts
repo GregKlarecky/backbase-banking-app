@@ -26,7 +26,7 @@ export class TransferComponent implements OnInit {
   }
 
   buildFormOnBalanceChange() {
-    this.stateService.balance$
+    this.subscriptions.sink = this.stateService.balance$
       .pipe(
         distinctUntilChanged(),
         tap(balance => {

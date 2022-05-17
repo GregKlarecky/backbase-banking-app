@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { mockProvider } from '@ngneat/spectator';
+import { stateMock } from 'src/testing/state.service.mock';
+import { StateService } from '../../services/state/state.service';
+import { TransferFormService } from '../../services/transfer-form/transfer-form.service';
 import { TransferComponent } from './transfer.component';
 
 describe('TransferComponent', () => {
@@ -8,9 +12,13 @@ describe('TransferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransferComponent ]
-    })
-    .compileComponents();
+      declarations: [TransferComponent],
+      providers: [
+        mockProvider(StateService, stateMock),
+        mockProvider(TransferFormService),
+        mockProvider(NgbModal)
+      ]
+    }).compileComponents();
   });
 
   beforeEach(() => {
