@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { take, tap, startWith } from 'rxjs/operators';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionFacade } from '../../helpers/transaction.facade';
-import { Subject, combineLatest } from 'rxjs';
+import { combineLatest, BehaviorSubject } from 'rxjs';
 import { StateService } from 'src/app/modules/core/services/state/state.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { StateService } from 'src/app/modules/core/services/state/state.service'
 export class TransactionListComponent implements OnInit {
   initialTransactions: TransactionFacade[];
   transactions: TransactionFacade[];
-  searchValue: Subject<string> = new Subject();
+  searchValue: string;
 
   constructor(
     private stateService: StateService,
@@ -22,7 +22,7 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTransactions();
-    this.onListChanges();
+    this.onNewTransfer();
   }
 
   initTransactions(): void {
@@ -39,26 +39,29 @@ export class TransactionListComponent implements OnInit {
   }
 
   onSearch(value: string): void {
-    this.searchValue.next(value);
+    this.searchValue = value;
+    this.filter();
   }
 
-  onListChanges(): void {
-    combineLatest(
-      this.searchValue,
-      this.stateService.transfer$.pipe(startWith(null))
-    )
+  onNewTransfer(): void {
+    this.stateService.transfer$
       .pipe(
-        tap(([searchValue, newTransaction]) => {
-          const listWithNewTransaction = newTransaction
-            ? [...this.initialTransactions, newTransaction]
-            : this.initialTransactions;
-          this.transactions = listWithNewTransaction.filter(transaction => {
-            const lowerCaseMerchantName = transaction.merchantName.toLocaleLowerCase();
-            const lowerCasedSearchValue = searchValue.toLocaleLowerCase();
-            return lowerCaseMerchantName.includes(lowerCasedSearchValue);
-          });
+        tap(newTransaction => {
+          this.initialTransactions = [
+            ...this.initialTransactions,
+            newTransaction
+          ];
+          this.filter();
         })
       )
       .subscribe();
+  }
+
+  filter() {
+    this.transactions = this.initialTransactions.filter(transaction => {
+      const lowerCaseMerchantName = transaction.merchantName.toLocaleLowerCase();
+      const lowerCasedSearchValue = this.searchValue.toLocaleLowerCase();
+      return lowerCaseMerchantName.includes(lowerCasedSearchValue);
+    });
   }
 }
