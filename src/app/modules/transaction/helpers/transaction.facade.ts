@@ -1,5 +1,4 @@
 import { Transaction } from 'src/app/interfaces/transaction.interface';
-import { Merchant } from 'src/app/interfaces/merchant.interface';
 import { TransactionType } from 'src/app/enums/transaction-type.enum';
 
 export class TransactionFacade {
@@ -11,10 +10,21 @@ export class TransactionFacade {
   currencyCode: string;
   constructor(transaction: Transaction) {
     this.categoryCode = transaction.categoryCode;
-    this.date = transaction.dates.valueDate;
+    this.date = TransactionFacade.transformValueDateToNumber(
+      transaction.dates.valueDate
+    );
     this.merchantName = transaction.merchant.name;
     this.amount = transaction.transaction.amountCurrency.amount;
     this.type = transaction.transaction.type;
     this.currencyCode = transaction.transaction.amountCurrency.currencyCode;
+  }
+
+  static transformValueDateToNumber(valueDate: number | string): number {
+    const isNumber = !isNaN(<number>valueDate);
+    if (isNumber) {
+      return <number>valueDate;
+    }
+    const date = new Date(valueDate);
+    return date.getTime();
   }
 }

@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { take, tap, startWith } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionFacade } from '../../helpers/transaction.facade';
-import { combineLatest, BehaviorSubject } from 'rxjs';
 import { StateService } from 'src/app/modules/core/services/state/state.service';
-
+import { SubSink } from 'subsink';
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-  initialTransactions: TransactionFacade[];
   transactions: TransactionFacade[];
-  searchValue: string;
+  private initialTransactions: TransactionFacade[];
+  private searchValue: string;
+  private subscriptions: SubSink = new SubSink();
 
   constructor(
     private stateService: StateService,
@@ -26,13 +26,14 @@ export class TransactionListComponent implements OnInit {
   }
 
   initTransactions(): void {
-    this.transactionService
+    this.subscriptions.sink = this.transactionService
       .getTransactions()
       .pipe(
         take(1),
         tap((transactions: TransactionFacade[]) => {
           this.initialTransactions = transactions;
           this.transactions = transactions;
+          this.sort();
         })
       )
       .subscribe();
@@ -41,10 +42,11 @@ export class TransactionListComponent implements OnInit {
   onSearch(value: string): void {
     this.searchValue = value;
     this.filter();
+    this.sort();
   }
 
   onNewTransfer(): void {
-    this.stateService.transfer$
+    this.subscriptions.sink = this.stateService.transfer$
       .pipe(
         tap(newTransaction => {
           this.initialTransactions = [
@@ -52,6 +54,7 @@ export class TransactionListComponent implements OnInit {
             newTransaction
           ];
           this.filter();
+          this.sort();
         })
       )
       .subscribe();
@@ -63,5 +66,13 @@ export class TransactionListComponent implements OnInit {
       const lowerCasedSearchValue = this.searchValue.toLocaleLowerCase();
       return lowerCaseMerchantName.includes(lowerCasedSearchValue);
     });
+  }
+
+  sort() {
+    this.transactions.sort((a, b) => b.date - a.date);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -6,6 +6,7 @@ import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewComponent } from '../review/review.component';
 import { TransferFormValue } from 'src/app/interfaces/transfer-form-value.interface';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-transfer',
@@ -14,6 +15,7 @@ import { TransferFormValue } from 'src/app/interfaces/transfer-form-value.interf
 })
 export class TransferComponent implements OnInit {
   transferFormQuestions: QuestionBase<any>[];
+  private subscriptions: SubSink = new SubSink();
   constructor(
     private stateService: StateService,
     private transferForm: TransferFormService,
@@ -41,5 +43,9 @@ export class TransferComponent implements OnInit {
   openReview(formValue: TransferFormValue) {
     const reference = this.ngbModal.open(ReviewComponent);
     reference.componentInstance.options = formValue;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

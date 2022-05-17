@@ -9,3 +9,11 @@
   font-weight: 500;
   font-size: 1.1rem;
 }
+
+.scrollable-container {
+  height: 600px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

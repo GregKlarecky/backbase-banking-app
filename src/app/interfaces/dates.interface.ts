@@ -1,3 +1,3 @@
 export interface Dates {
-  valueDate: number;
+  valueDate: number | string;
 }
