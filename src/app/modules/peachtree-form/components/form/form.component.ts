@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   SimpleChanges,
-  OnChanges
+  OnChanges,
 } from '@angular/core';
 import { QuestionBase } from '../../helpers/question-base.helper';
 import { FormGroup } from '@angular/forms';
@@ -13,7 +13,7 @@ import { FormService } from '../../services/form/form.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnChanges {
   @Input() questions: QuestionBase<any>[];
@@ -40,7 +40,7 @@ export class FormComponent implements OnChanges {
   }
 
   validate(): void {
-    this.questions.forEach(question => {
+    this.questions.forEach((question) => {
       this.form.controls[question.key].markAsTouched();
     });
   }

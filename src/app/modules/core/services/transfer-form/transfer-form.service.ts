@@ -9,7 +9,7 @@ import { BalanceValidator } from 'src/app/modules/peachtree-form/services/balanc
 import { DecimalNumber } from 'src/app/modules/peachtree-form/validators/decimal-number.validator';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransferFormService {
   constructor(private balanceValidator: BalanceValidator) {}
@@ -22,14 +22,14 @@ export class TransferFormService {
         key: 'fromAccount',
         label: 'From Account',
         type: InputType.Text,
-        options: { disabled: true }
+        options: { disabled: true },
       }),
       new QuestionBase({
         controlType: ControlType.Text,
         key: 'toAccount',
         label: 'To Account',
         type: InputType.Text,
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
       new QuestionBase({
         controlType: ControlType.Currency,
@@ -40,12 +40,12 @@ export class TransferFormService {
           Validators.required,
           NumberValidator,
           NegativeNumber,
-          DecimalNumber
+          DecimalNumber,
         ],
         asyncValidators: [
-          this.balanceValidator.validate.bind(this.balanceValidator)
-        ]
-      })
+          this.balanceValidator.validate.bind(this.balanceValidator),
+        ],
+      }),
     ];
   }
 }

@@ -8,7 +8,7 @@ import { TransferFormService } from '../../services/transfer-form/transfer-form.
 import { ReviewComponent } from '../review/review.component';
 import { TransferComponent } from './transfer.component';
 
-fdescribe('TransferComponent', () => {
+describe('TransferComponent', () => {
   let component: TransferComponent;
   let fixture: ComponentFixture<TransferComponent>;
 
