@@ -7,7 +7,7 @@ import { SubSink } from 'subsink';
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
-  styleUrls: ['./transaction-list.component.scss']
+  styleUrls: ['./transaction-list.component.scss'],
 })
 export class TransactionListComponent implements OnInit {
   transactions: TransactionFacade[];
@@ -48,10 +48,10 @@ export class TransactionListComponent implements OnInit {
   onNewTransfer(): void {
     this.subscriptions.sink = this.stateService.transfer$
       .pipe(
-        tap(newTransaction => {
+        tap((newTransaction) => {
           this.initialTransactions = [
             ...this.initialTransactions,
-            newTransaction
+            newTransaction,
           ];
           this.filter();
           this.sort();
@@ -61,8 +61,9 @@ export class TransactionListComponent implements OnInit {
   }
 
   filter() {
-    this.transactions = this.initialTransactions.filter(transaction => {
-      const lowerCaseMerchantName = transaction.merchantName.toLocaleLowerCase();
+    this.transactions = this.initialTransactions.filter((transaction) => {
+      const lowerCaseMerchantName =
+        transaction.merchantName.toLocaleLowerCase();
       const lowerCasedSearchValue = this.searchValue.toLocaleLowerCase();
       return lowerCaseMerchantName.includes(lowerCasedSearchValue);
     });

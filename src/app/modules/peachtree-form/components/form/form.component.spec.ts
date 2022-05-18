@@ -9,7 +9,7 @@ import { FormService } from '../../services/form/form.service';
 
 import { FormComponent } from './form.component';
 
-fdescribe('FormComponent', () => {
+describe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
 
@@ -67,7 +67,6 @@ fdescribe('FormComponent', () => {
     const validateSpy = spyOn(component.value, 'emit');
     fixture.detectChanges();
     component.form = formGroupMock;
-    console.log(component.form.valid);
     component.onSubmit();
     expect(validateSpy).not.toHaveBeenCalled();
   });
@@ -77,7 +76,6 @@ fdescribe('FormComponent', () => {
     fixture.detectChanges();
     component.form = formGroupMock;
     component.form.setValue({ toAccount: 'some Account' });
-    console.log(component.form.valid);
     component.onSubmit();
     expect(validateSpy).toHaveBeenCalled();
   });

@@ -6,5 +6,5 @@ export const transactionMock = {
   merchantName: 'Tester 3',
   type: TransactionType.Salaries,
   amount: 1234,
-  currencyCode: 'EUR'
+  currencyCode: 'EUR',
 };
