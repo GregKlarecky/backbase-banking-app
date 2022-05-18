@@ -11,7 +11,7 @@ import { SubSink } from 'subsink';
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
-  styleUrls: ['./transfer.component.scss']
+  styleUrls: ['./transfer.component.scss'],
 })
 export class TransferComponent implements OnInit {
   transferFormQuestions: QuestionBase<any>[];
@@ -21,6 +21,7 @@ export class TransferComponent implements OnInit {
     private transferForm: TransferFormService,
     private ngbModal: NgbModal
   ) {}
+
   ngOnInit(): void {
     this.buildFormOnBalanceChange();
   }
@@ -29,12 +30,11 @@ export class TransferComponent implements OnInit {
     this.subscriptions.sink = this.stateService.balance$
       .pipe(
         distinctUntilChanged(),
-        tap(balance => {
+        tap((balance) => {
           const accountName =
             this.stateService.accountName$.value + `: ${balance} €`;
-          this.transferFormQuestions = this.transferForm.getQuestions(
-            accountName
-          );
+          this.transferFormQuestions =
+            this.transferForm.getQuestions(accountName);
         })
       )
       .subscribe();
